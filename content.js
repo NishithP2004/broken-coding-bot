@@ -6,11 +6,14 @@ console.log("Keymap:", keymap);
 document.addEventListener("keydown", function(event) {
     console.log("Triggered")
   // Ignore keydown events if Ctrl, Shift, or Alt is pressed
-  if (event.ctrlKey || event.shiftKey || event.altKey) return;
+  if (event.ctrlKey || event.altKey) return;
 
   // Check if the pressed key is a letter
   if (event.key.length === 1 && /[a-zA-Z]/.test(event.key)) {
     var charUpperCase = keymap[event.key.toLowerCase()] || event.key;
+    if (/[A-Z]/.test(event.key)){
+      charUpperCase = charUpperCase.toUpperCase();
+    }
     event.preventDefault();
     var activeElement = document.activeElement;
     var selectionStart = activeElement.selectionStart;
